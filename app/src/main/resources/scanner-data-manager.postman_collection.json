@@ -1,0 +1,358 @@
+{
+	"info": {
+		"_postman_id": "dc6d9226-20d8-418a-8585-8ce706f6a5a7",
+		"name": "scanner-data-manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20174981"
+	},
+	"item": [
+		{
+			"name": "getScannerDataByFilter",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/scanners/graphs-data?fromDate=2022-08-01&toDate=2022-09-12&scannerType=SECURITY&productName=APEX",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scanners",
+						"graphs-data"
+					],
+					"query": [
+						{
+							"key": "fromDate",
+							"value": "2022-08-01"
+						},
+						{
+							"key": "toDate",
+							"value": "2022-09-12"
+						},
+						{
+							"key": "scannerType",
+							"value": "SECURITY"
+						},
+						{
+							"key": "productName",
+							"value": "APEX"
+						},
+						{
+							"key": "serviceName",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "branchName",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMicroservicesNames",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/scanners/microservices-names?productName=APEX&scannerName=OpenApi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scanners",
+						"microservices-names"
+					],
+					"query": [
+						{
+							"key": "productName",
+							"value": "APEX"
+						},
+						{
+							"key": "scannerName",
+							"value": "OpenApi"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllProductsNames",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/scanners/products-names?scannerName=Junit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scanners",
+						"products-names"
+					],
+					"query": [
+						{
+							"key": "scannerName",
+							"value": "Junit"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getIdentifierScanner",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/scanners/reports?productName=APEX&microserviceName=north-api-sites&version=main&scannerName=Allure",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scanners",
+						"reports"
+					],
+					"query": [
+						{
+							"key": "productName",
+							"value": "APEX"
+						},
+						{
+							"key": "microserviceName",
+							"value": "north-api-sites"
+						},
+						{
+							"key": "version",
+							"value": "main"
+						},
+						{
+							"key": "scannerName",
+							"value": "Allure"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getScannersNames",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/scanners/scanners-names",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scanners",
+						"scanners-names"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getVersionsByProductNameAndMicroserviceName",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/scanners/versions?productName=APEX&microserviceName=north-api-sites&scannerName=Allure",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scanners",
+						"versions"
+					],
+					"query": [
+						{
+							"key": "productName",
+							"value": "APEX"
+						},
+						{
+							"key": "microserviceName",
+							"value": "north-api-sites"
+						},
+						{
+							"key": "scannerName",
+							"value": "Allure"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "showMoreDetailsById",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/scanners/63107b21d419da06efdf0798",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scanners",
+						"63107b21d419da06efdf0798"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logIn",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"string\",\n  \"password\": \"string\",\n  \"userName\": \"string\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "uploadScannerFile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "scannerDataFile",
+							"contentType": "multipart/form-data",
+							"type": "file",
+							"src": "/C:/Users/HP/Downloads/allure.json"
+						},
+						{
+							"key": "microserviceName",
+							"value": "north-api-sites",
+							"contentType": "application/json",
+							"type": "text"
+						},
+						{
+							"key": "branchVersion",
+							"value": "usr",
+							"contentType": "application/json",
+							"type": "text"
+						},
+						{
+							"key": "buildNumber",
+							"value": "00_00_03",
+							"contentType": "application/json",
+							"type": "text"
+						},
+						{
+							"key": "testName",
+							"value": "testNameAllure",
+							"contentType": "application/json",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"contentType": "application/json",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/scanners/upload-file/APEX/Allure",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scanners",
+						"upload-file",
+						"APEX",
+						"Allure"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

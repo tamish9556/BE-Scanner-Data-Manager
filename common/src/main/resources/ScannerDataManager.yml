@@ -1,0 +1,459 @@
+openapi: "3.0.1"
+info:
+  version: v0
+  title: Swagger ScannersAPI
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+paths:
+  /scanners/graphs-data:
+    get:
+      summary: Filtered Data for Graphs
+      tags:
+        - ScannerModel
+      operationId: getScannerDataByFilter
+      parameters:
+        - name: fromDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: toDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: scannerType
+          in: query
+          schema:
+            type: string
+        - name: productName
+          in: query
+          schema:
+            type: string
+        - name: serviceName
+          in: query
+          schema:
+            type: string
+        - name: branchName
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/ScannerModel"
+  /scanners/{id}:
+    get:
+      summary: Info for a specific UnifiedDataScanner
+      tags:
+        - UnifiedDataScanner
+      operationId: showMoreDetailsById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the UnifiedDataScanner to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnifiedDataScanner'
+        '204':
+          description: no scanner found for the given Id.
+        '500':
+          description: exception in Server
+  /scanners/products-names:
+    get:
+      summary: Get all distinct products names (optional by scanner name)
+      tags:
+        - string
+      operationId: getAllProductsNames
+      parameters:
+        - in: query
+          name: scannerName
+          schema:
+            type: string
+          required: false
+          description: Scanner name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '204':
+          description: No products names found.
+        '500':
+          description: Exception in Server
+  /scanners/microservices-names:
+    get:
+      summary: Get all distinct microservices names by product name (optional also by scanner name)
+      tags:
+        - string
+      operationId: getMicroservicesNames
+      parameters:
+        - in: query
+          name: productName
+          schema:
+            type: string
+          required: true
+          description: Product name
+        - in: query
+          name: scannerName
+          schema:
+            type: string
+          required: false
+          description: Scanner name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '204':
+          description: No microservices names found.
+        '500':
+          description: Exception in Server
+  /scanners/versions:
+    get:
+      summary: Get all distinct branch versions filter by microservices names, product name (optional also by scanner name)
+      tags:
+        - string
+      operationId: getVersionsByProductNameAndMicroserviceName
+      parameters:
+        - in: query
+          name: productName
+          schema:
+            type: string
+          required: true
+          description: Product name
+        - in: query
+          name: microserviceName
+          schema:
+            type: string
+          required: true
+          description: Microservice name
+        - in: query
+          name: scannerName
+          schema:
+            type: string
+          required: false
+          description: Scanner name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '204':
+          description: No versions names found.
+        '500':
+          description: Exception in Server
+  /scanners/reports:
+    get:
+      summary: Get all distinct IdentifierScanner(include id and build number) filter by branch versions, microservices names, product name (optional also by scanner name)
+      tags:
+        - IdentifierScanner
+      operationId: getIdentifierScanner
+      parameters:
+        - in: query
+          name: productName
+          schema:
+            type: string
+          required: true
+          description: Product name
+        - in: query
+          name: microserviceName
+          schema:
+            type: string
+          required: true
+          description: Microservice name
+        - in: query
+          name: version
+          schema:
+            type: string
+          required: true
+          description: Branch version
+        - in: query
+          name: scannerName
+          schema:
+            type: string
+          required: false
+          description: Scanner name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IdentifierScanner'
+        '204':
+          description: No IdentifierScanner names found.
+        '500':
+          description: Exception in Server
+  /scanners/scanners-names:
+    get:
+      summary: Get all scanners names
+      tags:
+        - string
+      operationId: getScannersNames
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '204':
+          description: No scanners names found.
+        '500':
+          description: Exception in Server
+  /scanners/upload-file/{productName}/{scannerName}:
+    post:
+      tags:
+        - UnifiedDataScanner
+      summary: Create a new Unified Data Scanner
+      operationId: uploadScannerFile
+      parameters:
+        - name: productName
+          in: path
+          required: true
+          description: The name of the product to path
+          schema:
+            type: string
+        - name: scannerName
+          in: path
+          required: true
+          description: The name of the scanner to path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - microserviceName
+                - branchVersion
+                - buildNumber
+              properties:
+                scannerDataFile:
+                  type: string
+                  format: binary
+                microserviceName:
+                  type: string
+                branchVersion:
+                  type: string
+                testName:
+                  type: string
+                buildNumber:
+                  type: string
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Server exception error
+  /auth/login:
+    post:
+      tags:
+        - log-in-controller
+      operationId: logIn
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserModel'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+components:
+  schemas:
+    ScannerTest:
+      type: object
+      x-class-extra-annotation: "@lombok.Data"
+      properties:
+        customizedFields:
+          type: object
+          additionalProperties:
+            type: string
+        id:
+          type: string
+        description:
+          type: string
+        severity:
+          type: string
+          $ref: '#/components/schemas/Severity'
+        status:
+          type: string
+          $ref: '#/components/schemas/Status'
+    UnifiedDataScanner:
+      x-class-extra-annotation: "@org.springframework.data.mongodb.core.mapping.Document(collection = \"unifiedDataList\") @lombok.Data"
+      type: object
+      properties:
+        id:
+          x-field-extra-annotation: "@org.springframework.data.annotation.Id"
+          type: string
+        buildNumber:
+          type: string
+        productName:
+          type: string
+        testName:
+          type: string
+        microserviceName:
+          type: string
+        version:
+          type: string
+        scannerName:
+          type: string
+        executionDate:
+          type: string
+          format: date-time
+        numberOfScans:
+          type: integer
+          format: int32
+        numberOfRisksHigh:
+          type: integer
+          format: int32
+        numberOfRisksLow:
+          type: integer
+          format: int32
+        numberOfRisksMedium:
+          type: integer
+          format: int32
+        numberOfSuccessfulScans:
+          type: integer
+          format: int32
+        listOfTests:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScannerTest'
+        scannerType:
+          type: string
+          $ref: '#/components/schemas/ScannerGroupType'
+        customizedFields:
+          type: object
+          additionalProperties:
+            type: string
+    UserModel:
+      x-class-extra-annotation: "@org.springframework.data.mongodb.core.mapping.Document(collection = \"UsersDetails\")"
+      type: object
+      properties:
+        id:
+          x-field-extra-annotation: "@org.springframework.data.annotation.Id"
+          type: string
+        password:
+          type: string
+        userName:
+          type: string
+    Status:
+      type: string
+      enum:
+        - Failed
+        - Passed
+        - Skipped
+    Severity:
+      type: string
+      enum:
+        - High
+        - Medium
+        - Low
+    SessionDetailsModel:
+      x-class-extra-annotation: "@org.springframework.data.mongodb.core.mapping.Document(collection = \"sessionDetails\")  @lombok.Data"
+      type: object
+      properties:
+        id:
+          x-field-extra-annotation: "@org.springframework.data.annotation.Id"
+          type: string
+        loginFailuresCount:
+          type: integer
+          format: int32
+        sessionId:
+          type: string
+        lastLoginFailedAt:
+          type: string
+          format: date-time
+    ScannerType:
+      type: string
+      enum:
+        - Allure
+        - OpenApi
+        - Junit
+        - Prisma
+        - BlackDuck
+    ScannerGroupType:
+      type: string
+      enum:
+        - SECURITY
+        - TEST_REPORT
+        - CODE_ANALYZER
+    ScannerModel:
+      type: object
+      x-class-extra-annotation: "@org.springframework.data.mongodb.core.mapping.Document(collection = \"unifiedDataList\") @lombok.Data"
+      properties:
+        id:
+          type: string
+          x-field-extra-annotation: "@org.springframework.data.annotation.Id"
+        buildNumber:
+          type: string
+        scannerName:
+          type: string
+        executionDate:
+          type: string
+          format: date
+        scannerType:
+          type: string
+        numberOfSuccessfulScans:
+          type: integer
+          format: int32
+        numberOfWarnings:
+          type: integer
+          format: int32
+        numberOfRisksHigh:
+          type: integer
+          format: int32
+        numberOfRisksMedium:
+          type: integer
+          format: int32
+        numberOfRisksLow:
+          type: integer
+          format: int32
+    IdentifierScanner:
+      x-class-extra-annotation: "@lombok.Data"
+      type: object
+      properties:
+        id:
+          x-field-extra-annotation: "@org.springframework.data.annotation.Id"
+          type: string
+        buildNumber:
+          type: string

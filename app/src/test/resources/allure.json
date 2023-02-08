@@ -1,0 +1,121 @@
+{
+    "uid" : "98d3104e051c652961429bf95fa0b5d6",
+    "children" : [ {
+      "name" : "NB Suite",
+      "children" : [ {
+        "name" : "Service Tests",
+        "children" : [ {
+          "name" : "com.dell.dtc.e2e.impl.tests.northbound.service.networkconfiguration.NbNetworkConfigurationTest",
+          "children" : [ {
+            "name" : "test Create Network Configuration",
+            "uid" : "b585965cde78ba7f",
+            "parentUid" : "70cfd5572975b5e9276700f849014f5a",
+            "status" : "passed",
+            "time" : {
+              "start" : 1637915057354,
+              "stop" : 1637915059604,
+              "duration" : 2250
+            },
+            "flaky" : false,
+            "newFailed" : false,
+            "parameters" : [ "ADMIN" ]
+          }, {
+            "name" : "Test Create NetworkConfiguration Already Exists",
+            "uid" : "d46805dfc5a4c849",
+            "parentUid" : "70cfd5572975b5e9276700f849014f5a",
+            "status" : "passed",
+            "time" : {
+              "start" : 1637915060109,
+              "stop" : 1637915060610,
+              "duration" : 501
+            },
+            "flaky" : false,
+            "newFailed" : false,
+            "parameters" : [ "ADMIN" ]
+          }, {
+            "name" : "Test create network configuration partial data",
+            "uid" : "9291fdba0b73d34",
+            "parentUid" : "70cfd5572975b5e9276700f849014f5a",
+            "status" : "passed",
+            "time" : {
+              "start" : 1637915060826,
+              "stop" : 1637915061865,
+              "duration" : 1039
+            },
+            "flaky" : false,
+            "newFailed" : false,
+            "parameters" : [ "ADMIN" ]
+          }, {
+            "name" : "Test Failed To Delete Network Configuration",
+            "uid" : "fec5c7aa59f8abaa",
+            "parentUid" : "70cfd5572975b5e9276700f849014f5a",
+            "status" : "passed",
+            "time" : {
+              "start" : 1637915062027,
+              "stop" : 1637915062229,
+              "duration" : 202
+            },
+            "flaky" : false,
+            "newFailed" : false,
+            "parameters" : [ "ADMIN" ]
+          }, {
+            "name" : "Test Failed To Update Network Configuration",
+            "uid" : "d0690f0d9188516c",
+            "parentUid" : "70cfd5572975b5e9276700f849014f5a",
+            "status" : "passed",
+            "time" : {
+              "start" : 1637915062233,
+              "stop" : 1637915062429,
+              "duration" : 196
+            },
+            "flaky" : false,
+            "newFailed" : false,
+            "parameters" : [ "ADMIN" ]
+          }, {
+            "name" : "test Get Network Configuration",
+            "uid" : "cb866f05b164db4b",
+            "parentUid" : "70cfd5572975b5e9276700f849014f5a",
+            "status" : "passed",
+            "time" : {
+              "start" : 1637915062436,
+              "stop" : 1637915063007,
+              "duration" : 571
+            },
+            "flaky" : false,
+            "newFailed" : false,
+            "parameters" : [ "ADMIN" ]
+          }, {
+            "name" : "test Update Network Configuration",
+            "uid" : "6923f6991767bde",
+            "parentUid" : "70cfd5572975b5e9276700f849014f5a",
+            "status" : "passed",
+            "time" : {
+              "start" : 1637915063181,
+              "stop" : 1637915063900,
+              "duration" : 719
+            },
+            "flaky" : false,
+            "newFailed" : false,
+            "parameters" : [ "ADMIN" ]
+          }, {
+            "name" : "Test Validation Failed",
+            "uid" : "2664bdbdbe98d9cd",
+            "parentUid" : "70cfd5572975b5e9276700f849014f5a",
+            "status" : "passed",
+            "time" : {
+              "start" : 1637915064120,
+              "stop" : 1637915064314,
+              "duration" : 194
+            },
+            "flaky" : false,
+            "newFailed" : false,
+            "parameters" : [ "ADMIN" ]
+          } ],
+          "uid" : "70cfd5572975b5e9276700f849014f5a"
+        } ],
+        "uid" : "f8131603278eefbd18db4194a3d35391"
+      } ],
+      "uid" : "0842bf1d4bc6515458454cee69d2d094"
+    } ],
+    "name" : "suites"
+  }
