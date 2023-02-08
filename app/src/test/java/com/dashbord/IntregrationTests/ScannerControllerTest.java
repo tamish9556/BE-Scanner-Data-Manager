@@ -1,4 +1,4 @@
-package com.dell.dashbord.IntregrationTests;
+package com.dashbord.IntregrationTests;
 
 import com.dashboard.ScannerDataManagerApplication;
 import com.dashboard.model.IdentifierScanner;
